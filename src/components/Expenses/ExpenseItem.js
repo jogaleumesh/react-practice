@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import "./ExpenseItem.css";
 import { ExpenseDate } from "./ExpenseDate";
 import { Card } from "../UI/Card";
@@ -12,7 +10,6 @@ export const ExpenseItem = ({ title, date, amount }) => {
         <h2>{title}</h2>
         <div className="expense-item__price">${amount}</div>
       </div>
-      <button onClick=""></button>
     </Card>
   );
 };
