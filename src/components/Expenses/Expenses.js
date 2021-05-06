@@ -1,16 +1,20 @@
 import { useState } from "react";
 
 import "./Expenses.css";
-import { ExpenseItem } from "./ExpenseItem";
 import { ExpensesFilter } from "./ExpensesFilter";
+import { ExpensesList } from "./ExpensesList";
 import { Card } from "../UI/Card";
 
 export const Expenses = ({ expenses }) => {
-  const [filterYear, setfilterYear] = useState("2020");
+  const [filterYear, setFilterYear] = useState("2020");
 
   const filterChangeHandler = (year) => {
-    setfilterYear(year);
+    setFilterYear(year);
   };
+
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filterYear;
+  });
 
   return (
     <Card className="expenses">
@@ -18,16 +22,7 @@ export const Expenses = ({ expenses }) => {
         seletedYear={filterYear}
         onChangeFilter={filterChangeHandler}
       />
-      {expenses.map((ele, index) => {
-        return (
-          <ExpenseItem
-            key={index}
-            title={ele.title}
-            amount={ele.amount}
-            date={ele.date}
-          />
-        );
-      })}
+      <ExpensesList expenses={filteredExpenses} />
     </Card>
   );
 };

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 import "./ExpenseForm.css";
 
-export const ExpenseForm = ({ onSaveExpenseData }) => {
-  const [title, settitle] = useState("");
-  const [amount, setamount] = useState("");
-  const [date, setdate] = useState("");
+export const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -16,9 +16,9 @@ export const ExpenseForm = ({ onSaveExpenseData }) => {
       date: new Date(date),
     };
     onSaveExpenseData(expenseData);
-    settitle("");
-    setamount("");
-    setdate("");
+    setTitle("");
+    setAmount("");
+    setDate("");
   };
 
   return (
@@ -29,7 +29,7 @@ export const ExpenseForm = ({ onSaveExpenseData }) => {
           <input
             type="text"
             value={title}
-            onChange={(e) => settitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 
@@ -37,7 +37,7 @@ export const ExpenseForm = ({ onSaveExpenseData }) => {
           <label>Amount</label>
           <input
             value={amount}
-            onChange={(e) => setamount(e.target.value)}
+            onChange={(e) => setAmount(e.target.value)}
             type="number"
           />
         </div>
@@ -46,7 +46,7 @@ export const ExpenseForm = ({ onSaveExpenseData }) => {
           <label>Date</label>
           <input
             value={date}
-            onChange={(e) => setdate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)}
             type="date"
             min="2020-01-01"
             max="2022-12-31"
@@ -54,6 +54,9 @@ export const ExpenseForm = ({ onSaveExpenseData }) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
