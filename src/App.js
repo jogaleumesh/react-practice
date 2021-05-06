@@ -1,4 +1,5 @@
-import { ExpenseList } from "./components/Expenses/ExpenseList";
+import { Expenses } from "./components/Expenses/Expenses";
+import { NewExpense } from "./components/NewExpense/NewExpense";
 
 const App = () => {
   const expenses = [
@@ -23,10 +24,18 @@ const App = () => {
     },
   ];
 
+  const onSaveExpenseData = (enterExpenseData) => {
+    const expenseData = {
+      ...enterExpenseData,
+      id: Math.random().toString(),
+    };
+    console.log("expenseData >>>", expenseData);
+  };
+
   return (
     <div>
-      <h2>Let's get Started</h2>
-      <ExpenseList expenses={expenses} />
+      <NewExpense onSaveExpenseData={onSaveExpenseData} />
+      <Expenses expenses={expenses} />
     </div>
   );
 };
